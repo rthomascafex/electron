@@ -13,6 +13,8 @@
 #include "base/task/post_task.h"
 #include "base/threading/sequenced_task_runner_handle.h"
 #include "base/threading/thread_restrictions.h"
+#include "chrome/browser/push_messaging/push_messaging_service_factory.h"
+#include "chrome/browser/push_messaging/push_messaging_service_impl.h"
 #include "chrome/common/chrome_paths.h"
 #include "chrome/common/pref_names.h"
 #include "components/keyed_service/content/browser_context_dependency_manager.h"
@@ -338,7 +340,7 @@ void AtomBrowserContext::OnLoaderCreated(
 }
 
 content::PushMessagingService* AtomBrowserContext::GetPushMessagingService() {
-  return nullptr;
+  return PushMessagingServiceFactory::GetForProfile(this);
 }
 
 content::SSLHostStateDelegate* AtomBrowserContext::GetSSLHostStateDelegate() {
